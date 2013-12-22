@@ -107,5 +107,19 @@ namespace dirichletProblem
         {
             sizeY = (int)numericUpDown2.Value;
         }
+
+        private void radioButton4_CheckedChanged(object sender, EventArgs e)
+        {
+            one = new testFunction();
+            two = new testDifferentialEquation();
+            u = new FunctionU();
+        }
+
+        private void radioButton5_CheckedChanged(object sender, EventArgs e)
+        {
+            one = new testFunction();//TODO заменить
+            two = new mainDifferentialEquation();
+            u = new FunctionUMain();
+        }
     }
 }
