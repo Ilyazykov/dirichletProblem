@@ -20,7 +20,7 @@ namespace dirichletProblem.getterOfValues
             int sizeX = borderValues.sizeX;
             int sizeY = borderValues.sizeY;
 
-            Table res = new Table(sizeX, sizeY, borderValues.rectangle);
+            Table res = new Table(sizeX, sizeY);
 
             res = seidelMethod(borderValues, numberOfIteration, eps);
 
@@ -46,7 +46,7 @@ namespace dirichletProblem.getterOfValues
             double[] y = new double[m + 1];
             for (int i = 0; i < n + 1; i++)
             {
-                x[i] = c + i * k;
+                y[i] = c + i * k;
             }
             double[,] v = new double[n + 1, m + 1];
             double[,] f = new double[n + 1, m + 1];
@@ -74,8 +74,6 @@ namespace dirichletProblem.getterOfValues
             {
                 v[i, 0] = borderValues.bottom[i];
                 v[i, m] = borderValues.top[i];
-                //v[i, 0] = Math.Sin(Math.PI * x[i] * c);//mu3
-                //v[i, m] = Math.Sin(Math.PI * x[i] * d);//mu4
             }
             for (int j = 0; j < m + 1; j++)
             {
@@ -109,7 +107,7 @@ namespace dirichletProblem.getterOfValues
                 }
             }
 
-            Table res = new Table(v, x, y);
+            Table res = new Table(v, x, y, S, eps_max);
             return res;
         }
     
