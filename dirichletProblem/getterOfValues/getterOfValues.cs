@@ -5,11 +5,11 @@ using System.Text;
 
 namespace dirichletProblem.getterOfValues
 {
-    abstract class getterOfValues
+    abstract class GetterOfValues
     {
-        public getterOfValues()
+        public GetterOfValues()
         {}
 
-        abstract public List<List<double>> getValues();
+        abstract public List<List<double>> getValues(int sizeX, int sizyY);
     }
 }

@@ -6,26 +6,33 @@ using dirichletProblem.Functions;
 
 namespace dirichletProblem.getterOfValues
 {
-    class differentialEquation : getterOfValues
+    class DifferentialEquation : GetterOfValues
     {
         Function F;
         Function U;
 
-        public differentialEquation()
+        public DifferentialEquation()
         {
             F = new FunctionF();
             U = new FunctionU();
         }
 
-        public override List<List<double>> getValues() //TODO заглушка для тестирования
+        public override List<List<double>> getValues(int sizeX, int sizeY) //TODO заглушка для тестирования
         {
-            int sizeX = 4;
-            int sizeY = 4;
-            List<List<double>> res = new List<List<double>>(sizeX);
-            for (int i = 0; i < sizeX; i++)
+            List<List<double>> res = new List<List<double>>();
+
+            List<double> row = new List<double>();
+
+            for (int y = 0; y < sizeY; y++)
             {
-                res[i] = new List<double>(sizeY);
+                row.Add(0.0d);
             }
+
+            for (int x = 0; x < sizeX; x++)
+            {
+                res.Add(row);
+            }
+
             return res;
         }
     }
