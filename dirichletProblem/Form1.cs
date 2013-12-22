@@ -44,29 +44,29 @@ namespace dirichletProblem
             tableOne = one.getValues(borderValues);
             tableTwo = two.getValues(borderValues, numberOfIteration, eps);
 
-            fillTable();
+            fillTable(tableOne);
         }
 
-        private void fillTable()
+        private void fillTable(Table t)
         {
-            dataGrid.RowCount = tableOne.sizeY;
-            dataGrid.ColumnCount = tableOne.sizeX;
+            dataGrid.RowCount = t.sizeY;
+            dataGrid.ColumnCount = t.sizeX;
 
             for (int x = 0; x < sizeX; ++x)
             {
-                dataGrid.Columns[x].HeaderText = tableOne.top[x].ToString();
+                dataGrid.Columns[x].HeaderText = t.top[x].ToString();
             }
 
             for (int y = 0; y < sizeY; ++y)
             {
-                dataGrid.Rows[y].HeaderCell.Value = tableOne.left[y].ToString();
+                dataGrid.Rows[y].HeaderCell.Value = t.left[y].ToString();
             }
 
             for (int y = 0; y < sizeY; ++y)
             {
                 for (int x = 0; x < sizeX; ++x)
                 {
-                    dataGrid.Rows[y].Cells[x].Value = tableOne[x, y];
+                    dataGrid.Rows[y].Cells[x].Value = t[x, y];
                 }
             }
         }
