@@ -52,6 +52,11 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Functions\Function.cs" />
+    <Compile Include="Functions\FunctionF.cs" />
+    <Compile Include="Functions\FunctionU.cs" />
+    <Compile Include="getterOfValues\differentialEquation.cs" />
+    <Compile Include="getterOfValues\getterOfValues.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
