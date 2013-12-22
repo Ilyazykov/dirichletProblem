@@ -10,6 +10,6 @@ namespace dirichletProblem.getterOfValues
         public GetterOfValues()
         {}
 
-        abstract public List<List<double>> getValues(int sizeX, int sizyY);
+        abstract public Table getValues(BorderValues BorderValues);
     }
 }

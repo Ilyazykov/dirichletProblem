@@ -17,21 +17,12 @@ namespace dirichletProblem.getterOfValues
             U = new FunctionU();
         }
 
-        public override List<List<double>> getValues(int sizeX, int sizeY) //TODO заглушка для тестирования
+        public override Table getValues(BorderValues borderValues) //TODO заглушка для тестирования
         {
-            List<List<double>> res = new List<List<double>>();
+            int sizeX = borderValues.sizeX;
+            int sizeY = borderValues.sizeY;
 
-            List<double> row = new List<double>();
-
-            for (int y = 0; y < sizeY; y++)
-            {
-                row.Add(0.0d);
-            }
-
-            for (int x = 0; x < sizeX; x++)
-            {
-                res.Add(row);
-            }
+            Table res = new Table(sizeX, sizeY, borderValues.rectangle);
 
             return res;
         }
