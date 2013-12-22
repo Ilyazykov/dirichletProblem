@@ -48,6 +48,9 @@ namespace dirichletProblem
 
             fillTable(tableOne);
             radioButton1.Checked = true;
+            label6.Text = tableOne.additonal1.ToString();
+            label7.Text = tableOne.additonal2.ToString();
+            label8.Text = tableThree.additonal1.ToString();
         }
 
         private void fillTable(Table t)
