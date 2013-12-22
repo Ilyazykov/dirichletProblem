@@ -12,53 +12,61 @@ namespace dirichletProblem
 {
     public partial class Form1 : Form
     {
-        Function u = new FunctionU();
-
-        double a = -1;
-        double b = 1;
-        double c = -1;
-        double d = 1;
-
         int sizeX = 4;
         int sizeY = 3;
-        Table table;
-        GetterOfValues getter;
+
+        Rectangle rectangle;
+        Function u;
+
+        Table tableOne;
+        Table tableTwo;
+
+        GetterOfValues one;
+        GetterOfValues two;
+
+        int numberOfIteration = 50;
+        double eps = 0.000001;
 
         public Form1()
         {
             InitializeComponent();
 
-            getter = new testFunction();
+            one = new testFunction();
+            two = new DifferentialEquation();
+            u = new FunctionU();
+            rectangle = new Rectangle(-1, 1, -1, 1);
         }
 
         private void btnToDo_Click(object sender, EventArgs e)
         {
-            Rectangle rectangle = new Rectangle(a, b, c, d);
             BorderValues borderValues = new BorderValues(rectangle, sizeX, sizeY, u);
-            table = getter.getValues(borderValues);
+
+            tableOne = one.getValues(borderValues);
+            tableTwo = two.getValues(borderValues, numberOfIteration, eps);
+
             fillTable();
         }
 
         private void fillTable()
         {
-            dataGrid.RowCount = table.sizeY;
-            dataGrid.ColumnCount = table.sizeX;
+            dataGrid.RowCount = tableOne.sizeY;
+            dataGrid.ColumnCount = tableOne.sizeX;
 
             for (int x = 0; x < sizeX; ++x)
             {
-                dataGrid.Columns[x].HeaderText = table.top[x].ToString();
+                dataGrid.Columns[x].HeaderText = tableOne.top[x].ToString();
             }
 
             for (int y = 0; y < sizeY; ++y)
             {
-                dataGrid.Rows[y].HeaderCell.Value = table.left[y].ToString();
+                dataGrid.Rows[y].HeaderCell.Value = tableOne.left[y].ToString();
             }
 
             for (int y = 0; y < sizeY; ++y)
             {
                 for (int x = 0; x < sizeX; ++x)
                 {
-                    dataGrid.Rows[y].Cells[x].Value = table[x, y];
+                    dataGrid.Rows[y].Cells[x].Value = tableOne[x, y];
                 }
             }
         }
