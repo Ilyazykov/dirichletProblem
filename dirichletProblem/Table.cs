@@ -33,10 +33,24 @@ namespace dirichletProblem
 
         static public Table operator-(Table one, Table two)
         {
+            int task = 1;
+            if (one.sizeX == two.sizeX)
+            {
+                task = 1;
+            }
+            else if (one.sizeX * 2 - 1 == two.sizeX)
+            {
+                task = 2;
+            }
+            else
+            {
+                throw new Exception();
+            }
+
             Table res = new Table(one.sizeX, one.sizeY);
             for (int i = 0; i < one.sizeX; i++)
             {
-                res.top[i] = one.top[i];;
+                res.top[i] = one.top[i];
             }
 
             for (int i = 0; i < one.sizeY; i++)
@@ -49,7 +63,7 @@ namespace dirichletProblem
             {
                 for (int j = 0; j < one.sizeY; j++)
                 {
-                    res[i,j] = Math.Abs(one[i,j] - two[i,j]);
+                    res[i, j] = Math.Abs(one[i, j] - two[i * task, j * task]);
                     max = Math.Max(res[i, j], max);
                 }
             }
@@ -64,6 +78,16 @@ namespace dirichletProblem
             left = new double[sizeY];
 
             values = new double[sizeX, sizeY];
+        }
+
+        public Table()
+        {
+            top = new double[1];
+            top[0] = 0;
+            left = new double[1];
+            left[0] = 0;
+            values = new double[1, 1];
+            values[0, 0] = 0;
         }
 
         public Table(double[,] v, double[] x, double[] y, double additonalInformation1=0, double additonalInformation2=0)

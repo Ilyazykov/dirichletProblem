@@ -12,6 +12,8 @@ namespace dirichletProblem
 {
     public partial class Form1 : Form
     {
+        int task = 1;
+
         int sizeX = 15;
         int sizeY = 15;
 
@@ -40,10 +42,11 @@ namespace dirichletProblem
 
         private void btnToDo_Click(object sender, EventArgs e)
         {
-            BorderValues borderValues = new BorderValues(rectangle, sizeX, sizeY, u);
+            BorderValues borderValuesOne = new BorderValues(rectangle, sizeX, sizeY, u);
+            BorderValues borderValuesTwo = new BorderValues(rectangle, sizeX*task - task + 1, sizeY*task -task + 1, u);
 
-            tableTwo = one.getValues(borderValues);
-            tableOne = two.getValues(borderValues, numberOfIteration, eps);
+            tableOne = two.getValues(borderValuesOne, numberOfIteration, eps);
+            tableTwo = one.getValues(borderValuesTwo);
             tableThree = tableOne - tableTwo;
 
             fillTable(tableOne);
@@ -58,20 +61,20 @@ namespace dirichletProblem
             dataGrid.RowCount = t.sizeY;
             dataGrid.ColumnCount = t.sizeX;
 
-            for (int x = 0; x < sizeX; ++x)
+            for (int x = 0; x < t.sizeX; ++x)
             {
                 dataGrid.Columns[x].Width = 50;
                 dataGrid.Columns[x].HeaderText = t.top[x].ToString();
             }
 
-            for (int y = 0; y < sizeY; ++y)
+            for (int y = 0; y < t.sizeY; ++y)
             {
                 dataGrid.Rows[y].HeaderCell.Value = t.left[y].ToString();
             }
 
-            for (int y = 0; y < sizeY; ++y)
+            for (int y = 0; y < t.sizeY; ++y)
             {
-                for (int x = 0; x < sizeX; ++x)
+                for (int x = 0; x < t.sizeX; ++x)
                 {
                     dataGrid.Rows[y].Cells[x].Value = t[x, y];
                 }
@@ -110,6 +113,7 @@ namespace dirichletProblem
 
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
+            task = 1;
             one = new testFunction();
             two = new testDifferentialEquation();
             u = new FunctionU();
@@ -117,7 +121,8 @@ namespace dirichletProblem
 
         private void radioButton5_CheckedChanged(object sender, EventArgs e)
         {
-            one = new testFunction();//TODO заменить
+            task = 2;
+            one = new mainDifferentialEquation();
             two = new mainDifferentialEquation();
             u = new FunctionUMain();
         }
