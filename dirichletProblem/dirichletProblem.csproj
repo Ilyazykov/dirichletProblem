@@ -56,6 +56,7 @@
     <Compile Include="Functions\FunctionF.cs" />
     <Compile Include="Functions\FunctionFmain.cs" />
     <Compile Include="Functions\FunctionU.cs" />
+    <Compile Include="Functions\FunctionUMain.cs" />
     <Compile Include="getterOfValues\BorderValues.cs" />
     <Compile Include="getterOfValues\differentialEquation.cs" />
     <Compile Include="getterOfValues\getterOfValues.cs" />

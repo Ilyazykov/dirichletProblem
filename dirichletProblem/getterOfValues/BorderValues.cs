@@ -37,7 +37,7 @@ namespace dirichletProblem.getterOfValues
 
         public double endY { get { return rectangle.endY; } }
 
-        public BorderValues(Rectangle rectangle, int numPointX, int numPointY, Function u) //TODO too much arguments
+        public BorderValues(Rectangle rectangle, int numPointX, int numPointY, Function u)
         {
             this.rectangle = rectangle;
 
