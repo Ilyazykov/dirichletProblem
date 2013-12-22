@@ -6,13 +6,12 @@ using dirichletProblem.Functions;
 
 namespace dirichletProblem.getterOfValues
 {
-    class DifferentialEquation : GetterOfValues
+    abstract class DifferentialEquation : GetterOfValues
     {
-        Function F;
+        public Function F;
 
         public DifferentialEquation()
         {
-            F = new FunctionF();
         }
 
         public override Table getValues(BorderValues borderValues, int numberOfIteration, double eps)
@@ -56,7 +55,7 @@ namespace dirichletProblem.getterOfValues
             double eps_max = 0.0;
             double eps_cur = 0.0;
             int S = 0;
-            bool flag = false; // условие остановки
+            bool flag = false;
 
             double h2 = (-n*n) / ((b-a)*(b-a));
             double k2 = (-m*m) / ((d-c)*(d-c));
@@ -66,7 +65,7 @@ namespace dirichletProblem.getterOfValues
             {
                 for (int j = 1; j < m; j++)
                 {
-                    v[i, j] = 0.0;//начальное приближение
+                    v[i, j] = 0.0;
                     f[i, j] = F.getValue(x[i], y[j]);
                 }
             }
@@ -79,8 +78,6 @@ namespace dirichletProblem.getterOfValues
             {
                 v[0, j] = borderValues.left[j];
                 v[n, j] = borderValues.right[j];
-                //v[0, j] = Math.Sin(Math.PI * a * y[j]);//mu1
-                //v[n, j] = Math.Sin(Math.PI * b * y[j]);//mu2
             }
 
             while (!flag)

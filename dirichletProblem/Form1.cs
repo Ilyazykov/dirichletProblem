@@ -33,7 +33,7 @@ namespace dirichletProblem
             InitializeComponent();
 
             one = new testFunction();
-            two = new DifferentialEquation();
+            two = new testDifferentialEquation();
             u = new FunctionU();
             rectangle = new Rectangle(-1, 1, -1, 1);
         }
