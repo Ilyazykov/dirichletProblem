@@ -42,11 +42,13 @@ namespace dirichletProblem
 
         private void btnToDo_Click(object sender, EventArgs e)
         {
+            eps = Convert.ToDouble(textBox1.Text);
+
             BorderValues borderValuesOne = new BorderValues(rectangle, sizeX, sizeY, u);
             BorderValues borderValuesTwo = new BorderValues(rectangle, sizeX*task - task + 1, sizeY*task -task + 1, u);
 
             tableOne = two.getValues(borderValuesOne, numberOfIteration, eps);
-            tableTwo = one.getValues(borderValuesTwo);
+            tableTwo = one.getValues(borderValuesTwo, numberOfIteration, eps);
             tableThree = tableOne - tableTwo;
 
             fillTable(tableOne);
@@ -125,6 +127,11 @@ namespace dirichletProblem
             one = new mainDifferentialEquation();
             two = new mainDifferentialEquation();
             u = new FunctionUMain();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }
