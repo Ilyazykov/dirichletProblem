@@ -10,6 +10,6 @@ namespace dirichletProblem.getterOfValues
         public GetterOfValues()
         {}
 
-        abstract public Table getValues(BorderValues borderValues, int numberOfIteration = 0, double minError = 0);
+        abstract public Table getValues(BorderValues borderValues, int numberOfIteration = 0, double minError = 0, double additional = 0);
     }
 }

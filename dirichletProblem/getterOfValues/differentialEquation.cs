@@ -14,20 +14,21 @@ namespace dirichletProblem.getterOfValues
         {
         }
 
-        public override Table getValues(BorderValues borderValues, int numberOfIteration, double eps)
+        public override Table getValues(BorderValues borderValues, int numberOfIteration, double eps, double additional)
         {
             int sizeX = borderValues.sizeX;
             int sizeY = borderValues.sizeY;
 
             Table res = new Table(sizeX, sizeY);
 
-            res = seidelMethod(borderValues, numberOfIteration, eps);
+            res = seidelMethod(borderValues, numberOfIteration, eps, additional);
 
             return res;
         }
 
-        private Table seidelMethod(BorderValues borderValues, int numberOfIteration, double eps)
+        private Table seidelMethod(BorderValues borderValues, int numberOfIteration, double eps, double additional = 1)
         {
+            double w = additional; 
             double a = borderValues.beginX, b = borderValues.endX, c = borderValues.beginY, d = borderValues.endY;
             int n = borderValues.sizeX - 1;
             int m = borderValues.sizeY - 1;
@@ -87,8 +88,8 @@ namespace dirichletProblem.getterOfValues
                     for (int i = 1; i < n; i++)
                     {
                         v_old = v[i, j];
-                        v_new = -1 * (h2 * (v[i + 1, j] + v[i - 1, j]) + k2 * (v[i, j + 1] + v[i, j - 1]));
-                        v_new = v_new + f[i, j];
+                        v_new = -w * (h2 * (v[i + 1, j] + v[i - 1, j]) + k2 * (v[i, j + 1] + v[i, j - 1]));
+                        v_new = v_new + (1-w)*a2*v[i,j] + w * f[i, j];
                         v_new = v_new / a2;
                         eps_cur = Math.Abs(v_old - v_new);
                         if (eps_cur > eps_max)

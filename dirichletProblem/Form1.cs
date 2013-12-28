@@ -29,6 +29,7 @@ namespace dirichletProblem
 
         int numberOfIteration = 500;
         double eps = 0.000001;
+        double w = 1;
 
         public Form1()
         {
@@ -47,8 +48,8 @@ namespace dirichletProblem
             BorderValues borderValuesOne = new BorderValues(rectangle, sizeX, sizeY, u);
             BorderValues borderValuesTwo = new BorderValues(rectangle, sizeX*task - task + 1, sizeY*task -task + 1, u);
 
-            tableOne = two.getValues(borderValuesOne, numberOfIteration, eps);
-            tableTwo = one.getValues(borderValuesTwo, numberOfIteration, eps);
+            tableOne = two.getValues(borderValuesOne, numberOfIteration, eps, w);
+            tableTwo = one.getValues(borderValuesTwo, numberOfIteration, eps, w);
             tableThree = tableOne - tableTwo;
 
             fillTable(tableOne);
@@ -132,6 +133,28 @@ namespace dirichletProblem
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown3_ValueChanged(object sender, EventArgs e)
+        {
+            w = (double)numericUpDown3.Value;
+        }
+
+        private void radioButton7_CheckedChanged(object sender, EventArgs e)
+        {
+            w = 1;
+            numericUpDown3.Enabled = false;
+        }
+
+        private void radioButton6_CheckedChanged(object sender, EventArgs e)
+        {
+            numericUpDown3.Enabled = true;
+            w = (double)numericUpDown3.Value;
         }
     }
 }
