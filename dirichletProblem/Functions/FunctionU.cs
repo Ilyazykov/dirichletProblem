@@ -13,7 +13,8 @@ namespace dirichletProblem.Functions
         public override double getValue(double x, double y)
         {
             double t = 1-x*x-y*y;
-            return Math.Exp(t);
+            //return Math.Exp(t);
+            return t;
         }
     }
 }

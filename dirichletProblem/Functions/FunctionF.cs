@@ -12,8 +12,9 @@ namespace dirichletProblem.Functions
 
         public override double getValue(double x, double y)
         {
-            double t = 1-x*x-y*y;
-            return 4 * t * Math.Exp(t);
+            //double t = 1-x*x-y*y;
+            //return 4 * t * Math.Exp(t);
+            return 4;
         }
     }
 }
